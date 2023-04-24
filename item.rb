@@ -7,7 +7,7 @@ class Item
   def initialize(publish_date)
     @id = Random.rand(1..1000)
     @publish_date = Date.parse(publish_date)
-    @archived: false
+    @archived = false
   end
 
   def add_author(author)
@@ -31,5 +31,5 @@ class Item
 
   def move_to_archive
     @archived = true if can_be_archived?
- end
+  end
 end
