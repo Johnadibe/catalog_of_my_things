@@ -8,12 +8,16 @@ create table Author (
 
 create table Game (
     id int generated always as identity,
-    genre char(30),
-    author char(30), 
-    source char(30),
-    label char(30),
+    genre_id int,
+    author_id int, 
+    source_id int,
+    label_id int,
     publish_date datetime,
     last_played_at datetime,
     multiplayer boolean,
-    archived boolean
+    archived boolean,
+    foreign key (author_id) references Author(id),
+    foreign key (label_id) references Label(id),
+    foreign key (author_id) references Author(id),
+    foreign key (author_id) references Genre(id),
 )
