@@ -37,7 +37,7 @@
 ### Key Features <a name="key-features"></a>
 
 - **[Library record keeping]**
-- **[Minimalistic UI to access the system]**
+- **[Minimalistic UI to access the systems]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
