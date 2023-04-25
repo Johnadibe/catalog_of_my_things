@@ -20,7 +20,7 @@ class Author
     item.add_author(self)
   end
 
-  def list_authors
+  def list_items_with_author
     @items.each_with_index do |item, ind|
       puts ind + 1
       puts "Publish date : #{item.publish_date}"
