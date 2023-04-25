@@ -8,10 +8,10 @@ class Item
     @id = Random.rand(1..1000)
     @publish_date = Date.parse(publish_date)
     @archived = false
+    @author = nil
   end
 
   def add_author(author)
-    author.add_items << self unless author.items.include? self
     @author = author
   end
 
