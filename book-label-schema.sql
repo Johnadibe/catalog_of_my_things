@@ -5,6 +5,8 @@ CREATE TABLE books (
   publish_date DATE NOT NULL,
   archived BOOLEAN NOT NULL,
   label_id INT REFERENCES labels(id)
+   genre_id INTEGER REFERENCES genres(id),
+  author_id INTEGER REFERENCES authors(id),
 );
 
 CREATE TABLE labels (
