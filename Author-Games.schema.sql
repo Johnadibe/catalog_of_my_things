@@ -7,6 +7,13 @@ create table Author (
 )
 
 create table Game (
-    multiplayer boolean,
+    id int generated always as identity,
+    genre char(30),
+    author char(30), 
+    source char(30),
+    label char(30),
+    publish_date datetime,
     last_played_at datetime,
+    multiplayer boolean,
+    archived boolean
 )
