@@ -6,12 +6,12 @@ class Item
 
   def initialize(publish_date)
     @id = Random.rand(1..1000)
-    @publish_date = Date.parse(publish_date)
+    @publish_date = publish_date
     @archived = false
+    @author = nil
   end
 
   def add_author(author)
-    author.add_items << self unless author.items.include? self
     @author = author
   end
 
@@ -26,7 +26,9 @@ class Item
   end
 
   def can_be_archived?
-    true if (DateTime.now - @publish_date).to_i / 365 > 10
+    return true if (Date.today - Date.parse(@publish_date)).to_i / 365 >= 10
+
+    false
   end
 
   def move_to_archive
