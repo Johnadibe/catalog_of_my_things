@@ -8,7 +8,7 @@ class Game < Item
     @last_played_at = last_played
   end
 
-  # private
+  private
 
   def can_be_archived?(item)
     return true if super(item) && ((Date.today - Date.parse(@last_played_at)).to_i / 365 >= 2)
