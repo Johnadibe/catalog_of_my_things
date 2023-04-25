@@ -25,8 +25,8 @@ class Item
     @label = label
   end
 
-  def can_be_archived?
-    return true if (Date.today - Date.parse(@publish_date)).to_i / 365 >= 10
+  def can_be_archived?(item)
+    return true if (Date.today - Date.parse(item.publish_date)).to_i / 365 >= 10
 
     false
   end
