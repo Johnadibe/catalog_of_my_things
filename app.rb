@@ -17,7 +17,7 @@ class App
     @labels = []
     @albums = []
     @games = []
-    
+
     loader = Loader.new
     loader.load_books(@books)
     loader.load_authors(@authors)
