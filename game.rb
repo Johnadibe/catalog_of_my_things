@@ -3,7 +3,6 @@ require './item'
 class Game < Item
   attr_accessor :multiplayer, :last_played_at
 
-
   def add_game(multi, last_played)
     @multiplayer = multi
     @last_played_at = last_played
