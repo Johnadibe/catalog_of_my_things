@@ -15,15 +15,15 @@ class App
     @books = []
     @genres = []
     @labels = []
-    @albums = []
+    @music_albums = []
     @games = []
 
     loader = Loader.new
     loader.load_books(@books)
     loader.load_authors(@authors)
     loader.load_genres(@genres)
-    loader.load_lables(@labels)
-    loader.load_albums(@albums)
+    loader.load_labels(@labels)
+    loader.load_music_albums(@music_albums)
     loader.load_games(@games)
   end
 
@@ -78,10 +78,10 @@ class App
   end
 
   def list_music_albums
-    if @albums.empty?
+    if @music_albums.empty?
       puts 'There are no books yet'
     else
-      @albums.each do |hash|
+      @music_albums.each do |hash|
         puts "On Spotify: #{hash['on_spotify']}"
       end
     end
@@ -119,7 +119,7 @@ class App
       'publish_date' => item.instance_variable_get('@publish_date')
     }
 
-    @albums << album_hash
+    @music_albums << album_hash
 
     puts 'Album created successfully'
   end
