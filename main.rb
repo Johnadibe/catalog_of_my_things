@@ -23,7 +23,7 @@ class Main
   end
 end
 
-# handel the choices
+# handle the choices
 def choice(user_answer, response)
   actions = {
     1 => :list_books,

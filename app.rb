@@ -42,8 +42,9 @@ class App
       puts 'There are no books yet'
     else
       @books.each do |hash|
-        puts "Cover_state: #{hash['cover_state']}   Publisher: #{hash['publisher']}"
+        puts "Class: #{hash['class']} Cover_state: #{hash['cover_state']}   Publisher: #{hash['publisher']}"
       end
+      puts ''
     end
   end
 
@@ -59,7 +60,7 @@ class App
 
   def list_genres
     if @genres.empty?
-      puts 'There are no books yet'
+      puts 'There are no genres yet'
     else
       @genres.each do |hash|
         puts "Name: #{hash['name']}"
@@ -69,7 +70,7 @@ class App
 
   def list_labels
     if @labels.empty?
-      puts 'There are no books yet'
+      puts 'There are no labels yet'
     else
       @labels.each do |hash|
         puts "Title: #{hash['title']}   Color: #{hash['color']}"
@@ -79,7 +80,7 @@ class App
 
   def list_music_albums
     if @music_albums.empty?
-      puts 'There are no books yet'
+      puts 'There are no musics albums yet'
     else
       @music_albums.each do |hash|
         puts "On Spotify: #{hash['on_spotify']}"
@@ -89,18 +90,18 @@ class App
 
   def add_book
     puts 'Creating book..Add details below.'
-    print 'Publish date: '
+    print 'Publish date : '
     publish_date = gets.chomp
-    print 'Cover_state'
+    print 'Cover_state : '
     cover_state = gets.chomp
-    print 'Publisher'
+    print 'Publisher : '
     publisher = gets.chomp
 
     book = Book.new(publisher, cover_state, publish_date)
     book_hash = {
       'publisher' => book.instance_variable_get('@publisher'),
       'cover_state' => book.instance_variable_get('@cover_state'),
-      'publish_date' => item.instance_variable_get('@publish_date'),
+      'publish_date' => book.instance_variable_get('@publish_date'),
       'class' => book.class
     }
 
@@ -110,13 +111,13 @@ class App
 
   def add_music_album
     puts 'Creating Album..Add details below.'
-    print 'On Spotify?: '
+    print 'On Spotify? : '
     on_spotify = gets.chomp
 
     album = Music.new(on_spotify)
     album_hash = {
       'on_spotify' => album.instance_variable_get('@on_spotify'),
-      'publish_date' => item.instance_variable_get('@publish_date')
+      'publish_date' => album.instance_variable_get('@publish_date')
     }
 
     @music_albums << album_hash
@@ -126,10 +127,10 @@ class App
 
   def add_game
     puts 'Creating game..Add details below.'
-    print 'Multiplayer?: '
+    print 'Multiplayer? : '
     multipayer = gets.chomp
 
-    print 'Last Played: '
+    print 'Last Played : '
     last_played_at = gets.chomp
 
     game = Game.new(multipayer, last_played_at)
