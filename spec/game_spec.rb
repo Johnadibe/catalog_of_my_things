@@ -1,5 +1,5 @@
-require './game'
-require './item'
+require './table/game'
+require './table/item'
 
 describe Game do
   before :each do

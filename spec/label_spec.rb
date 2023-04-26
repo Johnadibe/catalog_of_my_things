@@ -1,4 +1,4 @@
-require './label'
+require './table/inherit/label'
 
 describe Label do
   context 'create a book' do
