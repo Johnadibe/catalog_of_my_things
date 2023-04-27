@@ -15,7 +15,7 @@ class App
     @books = []
     @genres = []
     @labels = []
-    @music_albums = []
+    @musics = []
     @games = []
 
     loader = Loader.new
@@ -23,7 +23,7 @@ class App
     loader.load_authors(@authors)
     loader.load_genres(@genres)
     loader.load_labels(@labels)
-    loader.load_music_albums(@music_albums)
+    loader.load_musics(@musics)
     loader.load_games(@games)
   end
 
@@ -79,25 +79,45 @@ class App
   end
 
   def list_music_albums
-    if @music_albums.empty?
+    if @musics.empty?
       puts 'There are no musics albums yet'
     else
-      @music_albums.each do |hash|
+      @musics.each do |hash|
         puts "On Spotify: #{hash['on_spotify']}"
       end
     end
+  end
+
+  def add_label(item)
+    print 'Label title: '
+    title = gets.chomp
+    print 'Label color: '
+    color = gets.chomp
+    label = Label.new(title, color)
+    label.add_item(item)
+
+    label_hash = {
+      'id' => label.instance_variable_get('@id'),
+      'title' => label.instance_variable_get('@title'),
+      'author' => label.instance_variable_get('@color')
+    }
+
+    @labels << label_hash
   end
 
   def add_book
     puts 'Creating book..Add details below.'
     print 'Publish date : '
     publish_date = gets.chomp
-    print 'Cover_state : '
+    print 'Cover_state (good or bad): '
     cover_state = gets.chomp
     print 'Publisher : '
     publisher = gets.chomp
 
     book = Book.new(publisher, cover_state, publish_date)
+    # Add Label
+    add_label(book)
+    
     book_hash = {
       'publisher' => book.instance_variable_get('@publisher'),
       'cover_state' => book.instance_variable_get('@cover_state'),
@@ -106,23 +126,40 @@ class App
     }
 
     @books << book_hash
-    puts 'Book created successfully'
+    puts 'Book and Label were created successfully'
   end
 
-  def add_music_album
+  def add_genre(item)
+    print 'Genre name: '
+    name = gets.chomp
+
+    genre = Genre.new(name)
+    genre.add_item(item)
+
+    genre_hash = {
+      'name' => genre.instance_variable_get('@name')
+    }
+
+    @genres << genre_hash
+  end
+
+  def add_music
     puts 'Creating Album..Add details below.'
-    print 'On Spotify? : '
+    print 'On Spotify? (true or false) : '
     on_spotify = gets.chomp
 
     album = Music.new(on_spotify)
+    # Add genre
+    add_genre(album)
+
     album_hash = {
       'on_spotify' => album.instance_variable_get('@on_spotify'),
       'publish_date' => album.instance_variable_get('@publish_date')
     }
 
-    @music_albums << album_hash
+    @musics << album_hash
 
-    puts 'Album created successfully'
+    puts 'Music and Genre were created successfully'
   end
 
   def add_game
@@ -148,7 +185,10 @@ class App
   def exit_app
     File.write('./data/authors.json', JSON.generate(@authors))
     File.write('./data/books.json', JSON.generate(@books))
+    File.write('./data/labels.json', JSON.generate(@labels))
     File.write('./data/games.json', JSON.generate(@games))
+    File.write('./data/musics.json', JSON.generate(@musics))
+    File.write('./data/genres.json', JSON.generate(@genres))
     puts 'Thank you for using this app!'
     exit
   end
