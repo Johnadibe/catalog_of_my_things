@@ -36,7 +36,7 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **[Library record keeping]**
+- **[Catalog of my things record keeping]**
 - **[Minimalistic UI to access the systems]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -63,7 +63,7 @@ Clone this repository to your desired folder:
 
 ```sh
   cd my-folder
-  git clone https://github.com/Johnadibe/oop.git
+  git clone https://github.com/Johnadibe/catalog_of_my_things.git
 ```
 
 ### Install
@@ -71,8 +71,8 @@ Clone this repository to your desired folder:
 Install this project with:
 
 ```sh
-  cd add-person-student-teacher-class
-  - bundle install
+  cd catalog_of_my_things
+  bundle install
 ```
 
 ### Usage
@@ -80,8 +80,12 @@ Install this project with:
 To run the project, execute the following command:
 
 ```sh
-  ruby person.rb
+  ruby main.rb
 ```
+### Run tests
+
+-  Type `Rspec`: To run test 
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -102,6 +106,12 @@ To run the project, execute the following command:
 - Twitter: [@Donmark2k](https://twitter.com/donmark2k)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/chukwuemeka-ochuba/)
 
+👤**Shakir Hussain**
+
+- GitHub: [@Shakir-Hussain12](https://github.com/Shakir-Hussain12)
+- Twitter: [@S_Hussain_99](https://twitter.com/S_Hussain_99)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/shakir-hussain-2129a121b/)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -110,7 +120,9 @@ To run the project, execute the following command:
 ## 🔭 Future Features <a name="future-features"></a>
 
 
-- [ ] **[Command Line User Interface]**
+- [ ] **[View the author by id]**
+- [ ] **[Display music br genre]**
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -121,7 +133,7 @@ To run the project, execute the following command:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/ram1117/bibliothek-ruby-oops/issues).
+Feel free to check the [issues page](https://github.com/Johnadibe/catalog_of_my_things/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
