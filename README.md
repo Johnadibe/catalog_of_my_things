@@ -23,7 +23,7 @@
 # 📖 [OOP-School-Library] <a name="about-project"></a>
 
 **[OOP-School-Library]** is an implementation of school library system, using Ruby Object Oriented Programming principles
-
+- [Video description of the project](https://drive.google.com/file/d/1nrNc1g0aDzEuQQfDfNuKJH3YgdUrfO5k/view?usp=sharing)
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
