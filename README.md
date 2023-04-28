@@ -72,7 +72,7 @@ Install this project with:
 
 ```sh
   cd add-person-student-teacher-class
-  bundle install
+  - bundle install
 ```
 
 ### Usage
