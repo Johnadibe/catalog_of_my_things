@@ -8,7 +8,6 @@ require './table/music'
 require './loader'
 require 'json'
 
-
 class App # rubocop:disable Metrics/ClassLength
   puts "Welcome to The Content Hub!\n\n"
   def initialize
