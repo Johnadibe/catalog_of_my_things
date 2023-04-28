@@ -39,13 +39,13 @@ class Loader
     end
   end
 
-  def load_musics(musics)
+  def load_musics(_musics)
     if File.exist?('./data/music.json')
       JSON.parse(File.read('./data/music.json')).each do |music|
         music_albums << music
       end
     else
-      musics = []
+      _musics = []
     end
   end
 

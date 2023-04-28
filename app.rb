@@ -8,7 +8,8 @@ require './table/music'
 require './loader'
 require 'json'
 
-class App
+
+class App # rubocop:disable Metrics/ClassLength
   puts "Welcome to The Content Hub!\n\n"
   def initialize
     @authors = []
@@ -32,7 +33,9 @@ class App
       puts 'There are no Authors yet'
     else
       @authors.each do |hash|
-        puts "Full Name: #{hash['first_name']} #{hash['last_name']} "
+        print "Class: #{hash['class']}, Game ID : #{hash['game'].id}, "
+        print "Author Name: #{hash['first_name']} #{hash['last_name']}"
+        puts ''
       end
     end
   end
@@ -42,7 +45,9 @@ class App
       puts 'There are no books yet'
     else
       @books.each do |hash|
-        puts "Class: #{hash['class']} Cover_state: #{hash['cover_state']}   Publisher: #{hash['publisher']}"
+        print "Class: #{hash['class']}, Book_id : #{hash['book_id']}, "
+        print "Cover_state: #{hash['cover_state']}, Publisher: #{hash['publisher']}"
+        puts ''
       end
       puts ''
     end
@@ -53,7 +58,9 @@ class App
       puts 'There are no games yet'
     else
       @games.each do |hash|
-        puts "Multiplayer: #{hash['multipayer']}   Last Played: #{hash['last_played_at']}"
+        print "Class: #{hash['class']}, Game ID : #{hash['game_id']}, "
+        print "Multiplayer: #{hash['multiplayer']}, Last Played: #{hash['last_played_at']}"
+        puts ''
       end
     end
   end
@@ -63,7 +70,7 @@ class App
       puts 'There are no genres yet'
     else
       @genres.each do |hash|
-        puts "Name: #{hash['name']}"
+        puts "Class: #{hash['class']},  Album_id : #{hash['album'].id}, Genre: #{hash['name']}"
       end
     end
   end
@@ -73,7 +80,9 @@ class App
       puts 'There are no labels yet'
     else
       @labels.each do |hash|
-        puts "Title: #{hash['title']}   Color: #{hash['color']}"
+        print "Class: #{hash['class']}, Book ID: #{hash['book'].id}, "
+        print "Title: #{hash['title']}, Color: #{hash['color']}"
+        puts ''
       end
     end
   end
@@ -83,7 +92,9 @@ class App
       puts 'There are no musics albums yet'
     else
       @musics.each do |hash|
-        puts "On Spotify: #{hash['on_spotify']}"
+        print "Class: #{hash['class']},  Album_ID : #{hash['album_id']}, "
+        print "Publish Date : #{hash['publish_date']}, On Spotify: #{hash['on_spotify']}"
+        puts
       end
     end
   end
@@ -99,7 +110,9 @@ class App
     label_hash = {
       'id' => label.instance_variable_get('@id'),
       'title' => label.instance_variable_get('@title'),
-      'author' => label.instance_variable_get('@color')
+      'color' => label.instance_variable_get('@color'),
+      'book' => item,
+      'class' => label.class
     }
 
     @labels << label_hash
@@ -115,18 +128,17 @@ class App
     publisher = gets.chomp
 
     book = Book.new(publisher, cover_state, publish_date)
-    # Add Label
-    add_label(book)
-    
     book_hash = {
+      'book_id' => book.instance_variable_get('@id'),
       'publisher' => book.instance_variable_get('@publisher'),
       'cover_state' => book.instance_variable_get('@cover_state'),
       'publish_date' => book.instance_variable_get('@publish_date'),
       'class' => book.class
     }
-
     @books << book_hash
-    puts 'Book and Label were created successfully'
+
+    add_label(book)
+    puts 'Book was created successfully'
   end
 
   def add_genre(item)
@@ -135,31 +147,52 @@ class App
 
     genre = Genre.new(name)
     genre.add_item(item)
-
     genre_hash = {
-      'name' => genre.instance_variable_get('@name')
+      'name' => genre.instance_variable_get('@name'),
+      'album' => item,
+      'class' => genre.class
     }
-
     @genres << genre_hash
+
+    puts 'Genre added successfully'
   end
 
-  def add_music
+  def add_music_album
     puts 'Creating Album..Add details below.'
     print 'On Spotify? (true or false) : '
     on_spotify = gets.chomp
 
     album = Music.new(on_spotify)
-    # Add genre
-    add_genre(album)
-
     album_hash = {
+      'album_id' => album.instance_variable_get('@id'),
       'on_spotify' => album.instance_variable_get('@on_spotify'),
-      'publish_date' => album.instance_variable_get('@publish_date')
+      'publish_date' => album.instance_variable_get('@publish_date'),
+      'class' => album.class
     }
 
     @musics << album_hash
 
+    add_genre(album)
     puts 'Music and Genre were created successfully'
+  end
+
+  def add_author(item)
+    print('First Name : ')
+    first_name = gets.chomp
+    print('Last Name : ')
+    last_name = gets.chomp
+
+    author = Author.new(first_name, last_name)
+    author.add_item(item)
+    author_hash = {
+      'first_name' => author.instance_variable_get('@first_name'),
+      'last_name' => author.instance_variable_get('@last_name'),
+      'game' => item,
+      'class' => author.class
+    }
+    @authors << author_hash
+
+    puts 'Author was created successfully'
   end
 
   def add_game
@@ -170,25 +203,28 @@ class App
     print 'Last Played : '
     last_played_at = gets.chomp
 
-    game = Game.new(multipayer, last_played_at)
+    game = Game.new(1)
+    game.add_game(multipayer, last_played_at)
     game_hash = {
+      'game_id' => game.instance_variable_get('@id'),
       'multiplayer' => game.instance_variable_get('@multiplayer'),
-      'last_played_at' => game.instance_variable_get('last_played_at')
+      'last_played_at' => game.instance_variable_get('@last_played_at'),
+      'class' => game.class
     }
-
     @games << game_hash
 
+    add_author(game)
     puts 'Game created successfully'
   end
 
   # exit function
   def exit_app
-    File.write('./data/authors.json', JSON.generate(@authors))
-    File.write('./data/books.json', JSON.generate(@books))
-    File.write('./data/labels.json', JSON.generate(@labels))
-    File.write('./data/games.json', JSON.generate(@games))
-    File.write('./data/musics.json', JSON.generate(@musics))
-    File.write('./data/genres.json', JSON.generate(@genres))
+    File.write('./data/authors.json', JSON.generate(@authors)) if @authors.size.positive?
+    File.write('./data/books.json', JSON.generate(@books)) if @books.size.positive?
+    File.write('./data/labels.json', JSON.generate(@labels)) if @labels.size.positive?
+    File.write('./data/games.json', JSON.generate(@games)) if @games.size.positive?
+    File.write('./data/musics.json', JSON.generate(@musics)) if @musics.size.positive?
+    File.write('./data/genres.json', JSON.generate(@genres)) if @genres.size.positive?
     puts 'Thank you for using this app!'
     exit
   end
