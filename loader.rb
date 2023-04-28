@@ -1,7 +1,7 @@
 class Loader
   def load_authors(authors)
-    if File.exist?('./data/@authors.json')
-      JSON.parse(File.read('./data/@authors.json')).each do |author|
+    if File.exist?('./data/authors.json')
+      JSON.parse(File.read('./data/authors.json')).each do |author|
         authors << author
       end
     else
@@ -30,8 +30,8 @@ class Loader
   end
 
   def load_games(games)
-    if File.exist?('./data/@games.json')
-      JSON.parse(File.read('./data/@games.json')).each do |game|
+    if File.exist?('./data/games.json')
+      JSON.parse(File.read('./data/games.json')).each do |game|
         games << game
       end
     else
@@ -39,13 +39,13 @@ class Loader
     end
   end
 
-  def load_musics(_musics)
-    if File.exist?('./data/music.json')
-      JSON.parse(File.read('./data/music.json')).each do |music|
-        music_albums << music
+  def load_musics(musics)
+    if File.exist?('./data/musics.json')
+      JSON.parse(File.read('./data/musics.json')).each do |music|
+        musics << music
       end
     else
-      _musics = []
+      musics = []
     end
   end
 
