@@ -129,7 +129,8 @@ Feel free to check the [issues page](https://github.com/ram1117/bibliothek-ruby-
 
 ## ⭐️ Show your support <a name="support"></a>
 
-If you like this project please leave a STAR to the [Github repo](https://github.com/ram1117/bibliothek-ruby-oops/)
+If you like this project please leave a STAR to the [Github repo](https://github.com/Johnadibe/
+catalog_of_my_things/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

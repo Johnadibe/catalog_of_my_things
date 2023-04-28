@@ -19,6 +19,16 @@ class Loader
     end
   end
 
+  def load_labels(labels)
+    if File.exist?('./data/labels.json')
+      JSON.parse(File.read('./data/labels.json')).each do |label|
+        labels << label
+      end
+    else
+      labels = []
+    end
+  end
+
   def load_games(games)
     if File.exist?('./data/@games.json')
       JSON.parse(File.read('./data/@games.json')).each do |game|
@@ -26,6 +36,26 @@ class Loader
       end
     else
       games = []
+    end
+  end
+
+  def load_musics(_musics)
+    if File.exist?('./data/music.json')
+      JSON.parse(File.read('./data/music.json')).each do |music|
+        music_albums << music
+      end
+    else
+      _musics = []
+    end
+  end
+
+  def load_genres(genres)
+    if File.exist?('./data/genres.json')
+      JSON.parse(File.read('./data/genres.json')).each do |genre|
+        genres << genre
+      end
+    else
+      genres = []
     end
   end
 end

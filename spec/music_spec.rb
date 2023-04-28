@@ -1,5 +1,5 @@
-require_relative '../music'
-require_relative '../item'
+require_relative '../table/music'
+require_relative '../table/item'
 
 describe Music do
   before :each do

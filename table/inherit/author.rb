@@ -15,9 +15,9 @@ class Author
     @items = []
   end
 
-  def add_items(item)
-    @items.append(item) unless items.include? item
-    item.add_author(self)
+  def add_item(item)
+    item.author = self
+    @items << item unless @items.include? item
   end
 
   def list_items_with_author

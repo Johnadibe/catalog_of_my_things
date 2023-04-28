@@ -1,4 +1,4 @@
-require './book'
+require_relative '../table/book'
 
 describe Book do
   context 'create a book' do

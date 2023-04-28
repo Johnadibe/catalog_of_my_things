@@ -1,4 +1,4 @@
-require_relative '../genre'
+require_relative '../table/inherit/genre'
 
 describe('Genre') do
   it 'should initialize a genre' do

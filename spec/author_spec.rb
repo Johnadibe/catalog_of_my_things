@@ -1,4 +1,4 @@
-require './author'
+require_relative '../table/inherit/author'
 
 describe Author do
   before :each do
