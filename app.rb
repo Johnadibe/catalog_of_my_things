@@ -32,10 +32,11 @@ class App # rubocop:disable Metrics/ClassLength
       puts 'There are no Authors yet'
     else
       @authors.each do |hash|
-        print "Class: #{hash['class']}, Game ID : #{hash['game'].id}, "
+        print "Class: #{hash['class']}, Game ID : #{hash['game']}, "
         print "Author Name: #{hash['first_name']} #{hash['last_name']}"
         puts ''
       end
+      puts ''
     end
   end
 
@@ -61,6 +62,7 @@ class App # rubocop:disable Metrics/ClassLength
         print "Multiplayer: #{hash['multiplayer']}, Last Played: #{hash['last_played_at']}"
         puts ''
       end
+      puts ''
     end
   end
 
@@ -69,8 +71,9 @@ class App # rubocop:disable Metrics/ClassLength
       puts 'There are no genres yet'
     else
       @genres.each do |hash|
-        puts "Class: #{hash['class']},  Album_id : #{hash['album'].id}, Genre: #{hash['name']}"
+        puts "Class: #{hash['class']},  Album_id : #{hash['album']}, Genre: #{hash['name']}"
       end
+      puts ''
     end
   end
 
@@ -79,10 +82,11 @@ class App # rubocop:disable Metrics/ClassLength
       puts 'There are no labels yet'
     else
       @labels.each do |hash|
-        print "Class: #{hash['class']}, Book ID: #{hash['book'].id}, "
+        print "Class: #{hash['class']}, Book ID: #{hash['book']}, "
         print "Title: #{hash['title']}, Color: #{hash['color']}"
         puts ''
       end
+      puts ''
     end
   end
 
@@ -95,6 +99,7 @@ class App # rubocop:disable Metrics/ClassLength
         print "Publish Date : #{hash['publish_date']}, On Spotify: #{hash['on_spotify']}"
         puts
       end
+      puts ''
     end
   end
 
@@ -110,11 +115,12 @@ class App # rubocop:disable Metrics/ClassLength
       'id' => label.instance_variable_get('@id'),
       'title' => label.instance_variable_get('@title'),
       'color' => label.instance_variable_get('@color'),
-      'book' => item,
+      'book' => item.instance_variable_get('@id'),
       'class' => label.class
     }
 
     @labels << label_hash
+    puts 'Label added successfully'
   end
 
   def add_book
@@ -148,7 +154,7 @@ class App # rubocop:disable Metrics/ClassLength
     genre.add_item(item)
     genre_hash = {
       'name' => genre.instance_variable_get('@name'),
-      'album' => item,
+      'album' => item.instance_variable_get('@id'),
       'class' => genre.class
     }
     @genres << genre_hash
@@ -172,7 +178,7 @@ class App # rubocop:disable Metrics/ClassLength
     @musics << album_hash
 
     add_genre(album)
-    puts 'Music and Genre were created successfully'
+    puts 'Music Album was created successfully'
   end
 
   def add_author(item)
@@ -186,12 +192,12 @@ class App # rubocop:disable Metrics/ClassLength
     author_hash = {
       'first_name' => author.instance_variable_get('@first_name'),
       'last_name' => author.instance_variable_get('@last_name'),
-      'game' => item,
+      'game' => item.instance_variable_get('@id'),
       'class' => author.class
     }
     @authors << author_hash
 
-    puts 'Author was created successfully'
+    puts 'Author added successfully'
   end
 
   def add_game
